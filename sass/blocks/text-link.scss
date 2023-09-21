@@ -1,0 +1,7 @@
+.text-link {
+  color: $purple;
+
+  @include hover {
+    opacity: .8;
+  }
+}

@@ -1,0 +1,17 @@
+.canvas-block {
+  display: flex;
+  justify-content: flex-start;
+  flex-basis: 70%;
+  flex-shrink: 1;
+
+  &__canvas {
+    width: 100%;
+    height: auto;
+    max-height: 100vh;
+    aspect-ratio: 1;
+    border: 3px solid $lines-light;
+    margin: 40px;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+}

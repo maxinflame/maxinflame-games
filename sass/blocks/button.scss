@@ -1,0 +1,13 @@
+.button {
+  background: transparent;
+  border: 2px solid $lines-light;
+  color: $lines-light;
+  border-radius: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  @include hover {
+    color: $background-dark-blue;
+    background-color: $lines-light;
+  }
+}
