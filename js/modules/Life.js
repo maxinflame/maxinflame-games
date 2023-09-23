@@ -14,7 +14,7 @@ class Life {
   init() {
     this.setField();
     this.canvas.node.addEventListener('mouseup', this.canvasClickHandler.bind(this));
-    this.startButton.addEventListener('click', this.start.bind(this));
+    this.startButton.addEventListener('click', this.startButtonClickHandler.bind(this));
   }
 
   setField() {
@@ -30,13 +30,27 @@ class Life {
   start() {
     if (this.isStart) return;
     this.isStart = true;
+    this.startButton.classList.remove('button--start');
+    this.startButton.classList.add('button--stop');
+    this.startButton.innerHTML = 'Stop';
     this.changeGen();
   }
 
   stop() {
     this.isStart = false;
+    this.startButton.classList.add('button--start');
+    this.startButton.classList.remove('button--stop');
+    this.startButton.innerHTML = 'Start';
   }
 
+  startButtonClickHandler() {
+    if (this.isStart) {
+      this.stop();
+    } else {
+      this.start();
+    }
+  }
+ 
   canvasClickHandler(event) {
     const x = Math.floor(event.offsetX / (this.canvas.node.offsetWidth / this.canvas.cellsNumber[0]));
     const y = Math.floor(event.offsetY / (this.canvas.node.offsetHeight / this.canvas.cellsNumber[0]));
