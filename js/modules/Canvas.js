@@ -1,21 +1,33 @@
 class Canvas {  
-  constructor(node) {
+  constructor(node, cellsNumber) {
     this.node = node;
     this.ctx = this.node.getContext('2d');
-
-    this.node.width = this.node.offsetWidth;
-    this.node.height = this.node.offsetHeight;
-
+    this._cellsNumber = cellsNumber;
+    this.cellSize;
+    this.setSize();
     this.drawGrid();
   }
 
+  get cellsNumber() {
+    return this._cellsNumber;
+  }
+
+  set cellsNumber(value) {
+    this._cellsNumber = value;
+  }
+
+  setSize() {
+    this.node.width = this.node.offsetWidth;
+    this.node.height = this.node.offsetWidth * (this.cellsNumber[1] / this.cellsNumber[0]);
+    this.cellSize = this.node.offsetWidth / this.cellsNumber[0];
+  }
   drawField(arr) {
     this.ctx.clearRect(0, 0, this.node.offsetWidth, this.node.offsetHeight);
     this.ctx.fillStyle = '#de13de';
-    for (let i = 0; i < 30; i++) {
-      for(let j = 0; j < 30; j++) {
+    for (let i = 0; i < this.cellsNumber[0]; i++) {
+      for(let j = 0; j < this.cellsNumber[1]; j++) {
         if (arr[i][j] === 1) {
-          this.ctx.fillRect(j * (this.node.offsetWidth / 30), i * (this.node.offsetWidth / 30), (this.node.offsetWidth / 30), (this.node.offsetWidth / 30));
+          this.ctx.fillRect(j * this.cellSize, i * this.cellSize, this.cellSize, this.cellSize);
         }
       }
     }
@@ -29,18 +41,18 @@ class Canvas {
     let yCoord = 0;
 
     while (xCoord <= this.node.offsetWidth) {
-      xCoord += this.node.offsetWidth / 30;
+      xCoord += this.cellSize;
       this.ctx.moveTo(xCoord, 0);
       this.ctx.lineTo(xCoord, this.node.offsetHeight);
     }
 
     while (yCoord <= this.node.offsetHeight) {
-      yCoord += this.node.offsetWidth / 30;
+      yCoord += this.cellSize;
       this.ctx.moveTo(0, yCoord);
       this.ctx.lineTo(this.node.offsetWidth, yCoord);
     }
 
-    this.ctx.strokeStyle = '#4fc4fa';
+    this.ctx.strokeStyle = LIGHT_LINES_COLOR;
     this.ctx.stroke();
   }
 }

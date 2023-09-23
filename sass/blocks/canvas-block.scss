@@ -8,10 +8,7 @@
     width: 100%;
     height: auto;
     max-height: 100vh;
-    aspect-ratio: 1;
-    border: 3px solid $lines-light;
-    margin: 40px;
+    outline: 3px solid $lines-light;
     max-width: 650px;
-    margin: 0 auto;
   }
 }

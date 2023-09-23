@@ -1,0 +1,1 @@
+const LIGHT_LINES_COLOR = '#4fc4fa';
