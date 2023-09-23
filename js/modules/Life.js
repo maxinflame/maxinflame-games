@@ -1,12 +1,13 @@
 import {Canvas} from './Canvas.js'
 
 class Life {
-  constructor(canvas, counter, startButton, cellsNumber) {
+  constructor(canvas, counter, startButton, resetButton, cellsNumber) {
     this.canvas = new Canvas(canvas, cellsNumber);
     this.currentGen = [];
     this.count = 0;
     this.countNode = counter;
     this.startButton = startButton;
+    this.resetButton = resetButton;
     this.isStart = false;
     this.init();
   }
@@ -15,13 +16,13 @@ class Life {
     this.setField();
     this.canvas.node.addEventListener('mouseup', this.canvasClickHandler.bind(this));
     this.startButton.addEventListener('click', this.startButtonClickHandler.bind(this));
+    this.resetButton.addEventListener('click', this.reset.bind(this));
   }
 
   setField() {
-    const n = 30, m = 30;
-    for (let i = 0; i < m; i++) {
+    for (let i = 0; i < this.canvas.cellsNumber[0]; i++) {
       this.currentGen[i] = [];
-      for(let j = 0; j < n; j++) {
+      for(let j = 0; j < this.canvas.cellsNumber[1]; j++) {
         this.currentGen[i][j] = 0;
       }
     }
@@ -41,6 +42,14 @@ class Life {
     this.startButton.classList.add('button--start');
     this.startButton.classList.remove('button--stop');
     this.startButton.innerHTML = 'Start';
+  }
+
+  reset() {
+    this.stop();
+    this.count = 0;
+    this.countNode.innerHTML = this.count;
+    this.setField();
+    this.canvas.drawField(this.currentGen);
   }
 
   startButtonClickHandler() {
