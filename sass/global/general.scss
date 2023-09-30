@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,4 +15,5 @@ body {
   font-style: normal;
   background: linear-gradient(#121212, #212938, #304468, #ab38bc, #121212);
   color: $lines-light;
+  min-height: 100%;
 }

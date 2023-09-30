@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.min.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-wrapper">
+      <div class="page-header__wrapper">
+        <a class="page-header__title">MAXINFLAME <span class="page-header__subtitle">Games</span></a>
+        <nav class="page-header__nav">
+          <a href="/life/" class="page-header__link">Conway's Game of Life</a>
+          <a href="/snake/" class="page-header__link">Snake</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-wrapper">
+      <div class="text-wrapper">
+        <h1>Conway's Game of Life</h1>
+        <p>This is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves. It is Turing complete and can simulate a universal constructor or any other Turing machine.</p>
+        <p>Learn more on <a class="text-link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Wiki</a>.</p>
+      </div>
+      
+      <div class="game-wrapper">
+        <div class="canvas-block">
+          <canvas class="canvas-block__canvas" data-canvas></canvas>
+        </div>
+        <div class="controls">
+          <p>Number of generations: <span data-count>0</span></p>
+          <div class="controls__buttons">
+            <button class="button button--start" data-start>Start</button>
+            <button class="button button--reset" data-reset>Reset</button>  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+  
+  <footer>
+
+  </footer>
+  <script src="../js/modules/variables.js"></script>
+  <script src="../js/script.js" type="module"></script>
+</body>
+</html>
