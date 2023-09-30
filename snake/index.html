@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake</title>
+  <link rel="stylesheet" href="../css/style.min.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-wrapper">
+      <p class="page-header__title">MAXINFLAME <span class="page-header__subtitle">Games</span></p>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-wrapper">
+      <div class="text-wrapper">
+        <h1>Snake</h1>
+      </div>
+      
+      <div class="game-wrapper">
+        <div class="canvas-block canvas-block--snake">
+          <canvas class="canvas-block__canvas" data-canvas></canvas>
+          <button class="play-button" data-start>
+            <svg height="32px" style="enable-background:new 0 0 24 32;" version="1.1" viewBox="0 0 24 32" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Layer_1"/>
+              <g id="play">
+                <polygon points="0,0 24,16 0,32  "  fill="currentColor"/>
+              </g>
+            </svg>
+          </button>
+          <div class="game-over-popup hidden" data-game-over>
+            <span class="game-over-popup__title">GAME OVER</span>
+            <button class="button" data-retry>Retry</button>
+          </div>
+        </div>
+        <div>
+          <div><span>Score: </span><span data-score>0</span></div>
+          <div><span>High score: </span><span data-high-score></span></div>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+  
+  <footer>
+
+  </footer>
+  <script src="../js/modules/variables.js"></script>
+  <script src="../js/snake-game.js" type="module"></script>
+</body>
+</html>

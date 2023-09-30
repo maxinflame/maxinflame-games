@@ -3,6 +3,11 @@
   justify-content: flex-start;
   flex-basis: 70%;
   flex-shrink: 1;
+  position: relative;
+
+  &--snake {
+    max-width: 650px;
+  }
 
   &__canvas {
     width: 100%;

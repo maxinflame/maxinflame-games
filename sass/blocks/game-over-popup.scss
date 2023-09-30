@@ -1,0 +1,25 @@
+.game-over-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  background: linear-gradient(#121212, #212938, #304468);
+  border: 3px solid $purple;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &.hidden {
+    display: none;
+  }
+
+  &__title {
+    display: block;
+    font-size: 48px;
+    font-family: "Press Start 2P", cursive;
+    text-align: center;
+  }
+}

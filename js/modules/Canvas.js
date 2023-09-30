@@ -21,9 +21,10 @@ class Canvas {
     this.node.height = this.node.offsetWidth * (this.cellsNumber[1] / this.cellsNumber[0]);
     this.cellSize = this.node.offsetWidth / this.cellsNumber[0];
   }
+
   drawField(arr) {
     this.ctx.clearRect(0, 0, this.node.offsetWidth, this.node.offsetHeight);
-    this.ctx.fillStyle = '#de13de';
+    this.ctx.fillStyle = PURPLE;
     for (let i = 0; i < this.cellsNumber[0]; i++) {
       for(let j = 0; j < this.cellsNumber[1]; j++) {
         if (arr[i][j] === 1) {
@@ -32,6 +33,11 @@ class Canvas {
       }
     }
     this.drawGrid();
+  }
+
+  drawEl(color, x, y) {
+    this.ctx.fillStyle = color;
+    this.ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize)
   }
 
   drawGrid() {
@@ -54,6 +60,10 @@ class Canvas {
 
     this.ctx.strokeStyle = LIGHT_LINES_COLOR;
     this.ctx.stroke();
+  }
+
+  clear() {
+    this.ctx.clearRect(0, 0, this.node.offsetWidth, this.node.offsetHeight);
   }
 }
 

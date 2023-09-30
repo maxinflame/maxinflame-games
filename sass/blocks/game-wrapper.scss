@@ -1,6 +1,7 @@
 .game-wrapper {
   display: flex;
   margin-bottom: 40px;
+  gap: 48px;
 
   @media(max-width: $tablet-width) {
     display: block;

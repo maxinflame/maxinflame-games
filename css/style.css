@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @font-face {
   font-family: "Hotliner";
   src: url("../fonts/hotliner-regular.woff") format("woff");
@@ -52,13 +53,13 @@ body {
   bottom: -8px;
   transform: translateX(60%) rotate(-13deg);
   font-family: "Hotliner";
-  color: #de13de;
+  color: rgb(222, 19, 222);
   font-size: 16px;
   letter-spacing: -0.1em;
 }
 
 .text-link {
-  color: #de13de;
+  color: rgb(222, 19, 222);
   transition: 0.2s;
 }
 @media (min-width: 1024px) {
@@ -112,6 +113,7 @@ body {
 .game-wrapper {
   display: flex;
   margin-bottom: 40px;
+  gap: 48px;
 }
 @media (max-width: 1023px) {
   .game-wrapper {
@@ -124,6 +126,10 @@ body {
   justify-content: flex-start;
   flex-basis: 70%;
   flex-shrink: 1;
+  position: relative;
+}
+.canvas-block--snake {
+  max-width: 650px;
 }
 .canvas-block__canvas {
   width: 100%;
@@ -136,4 +142,51 @@ body {
 .controls__buttons {
   display: flex;
   gap: 16px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  background: transparent;
+  color: rgb(222, 19, 222);
+  border: 3px solid rgb(222, 19, 222);
+  background: rgba(222, 19, 222, 0.1);
+  padding: 16px 32px;
+  border-radius: 25%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.play-button.hidden {
+  display: none;
+}
+
+.game-over-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  background: linear-gradient(#121212, #212938, #304468);
+  border: 3px solid rgb(222, 19, 222);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.game-over-popup.hidden {
+  display: none;
+}
+.game-over-popup__title {
+  display: block;
+  font-size: 48px;
+  font-family: "Press Start 2P", cursive;
+  text-align: center;
 }

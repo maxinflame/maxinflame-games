@@ -36,7 +36,7 @@ const watcher = () => {
   ));
 }
 
-exports.default = gulp.series(
-  server,
+exports.default = gulp.parallel(
   watcher,
+  server,
 )
