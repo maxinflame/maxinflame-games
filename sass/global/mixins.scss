@@ -1,5 +1,4 @@
 @mixin hover {
-  transition: .2s;
   @media (min-width: $tablet-width + 1) {
     &:hover {
       @content;

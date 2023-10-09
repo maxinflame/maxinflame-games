@@ -3,19 +3,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: bold;
   font-family: "Press Start 2P", cursive;
   background: transparent;
   color: $purple;
-  border: 3px solid $purple;
-  background: rgba(222, 19, 222, .1);
-  padding: 16px 32px;
-  border-radius: 25%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  cursor: default;
+  white-space: nowrap;
+  pointer-events: none;
 
   &.hidden {
     display: none;

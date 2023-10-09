@@ -9,14 +9,16 @@ class TailPart {
 }
 
 class Snake {
-  constructor(canvas, cellsNumbers, startButton, gameOverPopup, retryButton, scoreNode, highScoreNode) {
+  constructor(canvas, cellsNumbers, startPopup, gameOverPopup, retryButton, scoreNode, highScoreNode) {
     this.cellsNumbers = cellsNumbers;
-    this.canvas = new Canvas(canvas, cellsNumbers);
-    this.startButton = startButton;
+    this.canvasNode = canvas;
+    this.canvas = new Canvas(this.canvasNode, cellsNumbers);
+    this.startPopup = startPopup;
     this.gameOverPopup = gameOverPopup;
     this.retryButton = retryButton
     this.scoreNode = scoreNode;
     this.highScoreNode = highScoreNode;
+    this.playButton = document.querySelector('[data-play-button]');
     this.head;
     this.food;
     this.tail = [];
@@ -24,6 +26,10 @@ class Snake {
     this.isGameStarted = false;
     this.score = 0;
     this.highScore;
+
+    this.startGame = this.startGame.bind(this);
+    this.pauseButtonHandler = this.pauseButtonHandler.bind(this);
+
     this.init();
   }
 
@@ -33,11 +39,10 @@ class Snake {
     this.createFood();
     window.addEventListener('keydown', this.keydownHandler.bind(this));
     this.drawSnake();
-    this.startButton.addEventListener('click', this.startGame.bind(this));
-    this.retryButton.addEventListener('click', this.startGame.bind(this));
+    this.canvasNode.addEventListener('click', this.startGame);
+    this.retryButton.addEventListener('click', this.startGame);
     this.highScore = localStorage.getItem('snakeHighScore') ? localStorage.getItem('snakeHighScore') : 0;
     this.highScoreNode.innerHTML = this.highScore;
-    console.log(localStorage.snakeHighScore)
   }
 
   createHead(xCoord, yCoord, Vy, Vx) {
@@ -168,17 +173,57 @@ class Snake {
   }
 
   startGame() {
+    this.canvasNode.removeEventListener('click', this.startGame);
+    this.playButton.removeEventListener('click', this.startGame);
+    this.playButton.addEventListener('click', this.pauseButtonHandler);
+    this.playButton.classList.remove('button--start');
+    this.playButton.classList.add('button--stop');
+    this.playButton.innerHTML = 'Pause';
     this.tail = [];
     this.createHead(10, 10, 0, 1);
     this.createTail();
     this.createFood();
     this.score = 0;
     this.scoreNode.innerHTML = this.score;
-    this.startButton.classList.add('hidden');
+    this.startPopup.classList.add('hidden');
     this.gameOverPopup.classList.add('hidden');
     this.isGameStarted = true;
     this.changeFrame();
   }
+
+  pauseButtonHandler() {
+    if (this.isGameStarted) {
+      this.isGameStarted = false;
+      this.playButton.classList.remove('button--stop');
+      this.playButton.classList.add('button--start');
+      this.playButton.innerHTML = 'Play';
+    } else {
+      this.isGameStarted = true;
+      this.playButton.classList.remove('button--start');
+      this.playButton.classList.add('button--stop');
+      this.playButton.innerHTML = 'Pause';
+      this.changeFrame();
+    }
+  }
+
+  // pauseGame() {
+  //   this.isGameStarted = false;
+  //   this.playButton.removeEventListener('click', this.pauseButtonHandler);
+  //   this.playButton.addEventListener('click', this.continueGame);
+  //   this.playButton.classList.remove('button--stop');
+  //   this.playButton.classList.add('button--start');
+  //   this.playButton.innerHTML = 'Play';
+  // }
+
+  // continueGame() {
+  //   this.isGameStarted = true;
+  //   this.changeFrame();
+  //   this.playButton.classList.remove('button--start');
+  //   this.playButton.classList.add('button--stop');
+  //   this.playButton.innerHTML = 'Pause';
+  //   this.playButton.addEventListener('click', this.pauseButtonHandler);
+  //   this.playButton.removeEventListener('click', this.continueGame);
+  // }
 
   gameOver() {
     this.isGameStarted = false;

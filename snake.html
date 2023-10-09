@@ -30,14 +30,9 @@
       <div class="game-wrapper">
         <div class="canvas-block canvas-block--snake">
           <canvas class="canvas-block__canvas" data-canvas></canvas>
-          <button class="play-button" data-start>
-            <svg height="32px" style="enable-background:new 0 0 24 32;" version="1.1" viewBox="0 0 24 32" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Layer_1"/>
-              <g id="play">
-                <polygon points="0,0 24,16 0,32  "  fill="currentColor"/>
-              </g>
-            </svg>
-          </button>
+          <div class="play-button" data-start>
+            CLICK TO START!
+          </div>
           <div class="game-over-popup hidden" data-game-over>
             <span class="game-over-popup__title">GAME OVER</span>
             <button class="button" data-retry>Retry</button>
@@ -46,6 +41,9 @@
         <div>
           <div><span>Score: </span><span data-score>0</span></div>
           <div><span>High score: </span><span data-high-score></span></div>
+          <div class="controls__buttons">
+            <button class="button button--start" data-play-button>Play</button>
+          </div>
         </div>
       </div>
     </div>

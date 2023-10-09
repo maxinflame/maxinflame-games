@@ -90,7 +90,6 @@ body {
 
 .text-link {
   color: rgb(222, 19, 222);
-  transition: 0.2s;
 }
 @media (min-width: 1024px) {
   .text-link:hover {
@@ -107,7 +106,6 @@ body {
   font-family: "Lucida Console", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
-  transition: 0.2s;
 }
 @media (min-width: 1024px) {
   .button:hover {
@@ -121,7 +119,6 @@ body {
   background-size: 16px 16px;
   background-position: top 50% right 8px;
   padding-right: 32px;
-  transition: 0.2s;
 }
 @media (min-width: 1024px) {
   .button--start:hover {
@@ -134,7 +131,6 @@ body {
   background-size: 16px 16px;
   background-position: top 50% right 12px;
   padding-right: 36px;
-  transition: 0.2s;
 }
 @media (min-width: 1024px) {
   .button--stop:hover {
@@ -181,19 +177,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 48px;
+  font-size: 32px;
   font-weight: bold;
   font-family: "Press Start 2P", cursive;
   background: transparent;
   color: rgb(222, 19, 222);
-  border: 3px solid rgb(222, 19, 222);
-  background: rgba(222, 19, 222, 0.1);
-  padding: 16px 32px;
-  border-radius: 25%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  cursor: default;
+  white-space: nowrap;
+  pointer-events: none;
 }
 .play-button.hidden {
   display: none;
@@ -240,7 +231,6 @@ body {
   text-decoration: none;
   border: 2px solid #4fc4fa;
   height: 100%;
-  transition: 0.2s;
 }
 @media (min-width: 1024px) {
   .games-list__link:hover {
