@@ -206,25 +206,6 @@ class Snake {
     }
   }
 
-  // pauseGame() {
-  //   this.isGameStarted = false;
-  //   this.playButton.removeEventListener('click', this.pauseButtonHandler);
-  //   this.playButton.addEventListener('click', this.continueGame);
-  //   this.playButton.classList.remove('button--stop');
-  //   this.playButton.classList.add('button--start');
-  //   this.playButton.innerHTML = 'Play';
-  // }
-
-  // continueGame() {
-  //   this.isGameStarted = true;
-  //   this.changeFrame();
-  //   this.playButton.classList.remove('button--start');
-  //   this.playButton.classList.add('button--stop');
-  //   this.playButton.innerHTML = 'Pause';
-  //   this.playButton.addEventListener('click', this.pauseButtonHandler);
-  //   this.playButton.removeEventListener('click', this.continueGame);
-  // }
-
   gameOver() {
     this.isGameStarted = false;
     this.gameOverPopup.classList.remove('hidden');
