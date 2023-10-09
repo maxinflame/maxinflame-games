@@ -27,6 +27,7 @@ const mincss = () => {
     .pipe(csso())
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest("css"))
+    .pipe(sync.stream());
 }
 
 const watcher = () => {
