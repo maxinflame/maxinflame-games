@@ -1,5 +1,42 @@
 .games-list {
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  } 
+
+  & li {
+    height: 100%;
+  }
+
   &__link {
     color: inherit;
+    display: block;
+    text-decoration: none;
+    border: 2px solid $lines-light;
+    height: 100%;
+
+    @include hover {
+      border-color: $purple;
+    }
+  }
+
+  &__cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 8px;
+  }
+
+  &__text-wrapper {
+    padding: 0 16px 16px 16px;
+
+    & p {
+      font-weight: 700;
+      font-size: 12px;
+    }
   }
 }
