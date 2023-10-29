@@ -26,7 +26,7 @@ body {
   font-family: "Lucida Console", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: 400;
   font-style: normal;
-  background: linear-gradient(#121212, #212938, #304468, #ab38bc, #121212);
+  background: linear-gradient(#121212, #212938, #304468, #121212);
   color: #4fc4fa;
   min-height: 100%;
 }
@@ -81,6 +81,11 @@ body {
   align-items: center;
   gap: 32px;
   font-family: "Lagoon beach";
+}
+@media (max-width: 1023px) {
+  .page-header__nav {
+    display: none;
+  }
 }
 .page-header__link {
   color: #4fc4fa;
@@ -159,6 +164,11 @@ body {
 .canvas-block--snake {
   max-width: 650px;
 }
+@media (max-width: 1023px) {
+  .canvas-block--snake {
+    margin-bottom: 20px;
+  }
+}
 .canvas-block__canvas {
   width: 100%;
   height: auto;
@@ -168,6 +178,7 @@ body {
 }
 
 .controls__buttons {
+  margin-top: 12px;
   display: flex;
   gap: 16px;
 }
@@ -185,6 +196,11 @@ body {
   cursor: default;
   white-space: nowrap;
   pointer-events: none;
+}
+@media (max-width: 1023px) {
+  .play-button {
+    font-size: 16px;
+  }
 }
 .play-button.hidden {
   display: none;
@@ -249,4 +265,42 @@ body {
 .games-list__text-wrapper p {
   font-weight: 700;
   font-size: 12px;
+}
+
+.mobile-controls {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .mobile-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    margin-top: 12px;
+  }
+}
+.mobile-controls__button {
+  padding: 0;
+  display: block;
+  background: transparent;
+  color: inherit;
+  outline: none;
+  border: 1px solid #4fc4fa;
+  width: 100%;
+  padding: 8px 0;
+}
+.mobile-controls__button--up {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.mobile-controls__button--left {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+.mobile-controls__button--down {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.mobile-controls__button--right {
+  grid-column: 3/4;
+  grid-row: 2/3;
 }

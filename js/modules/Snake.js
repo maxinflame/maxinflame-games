@@ -9,12 +9,12 @@ class TailPart {
 }
 
 class Snake {
-  constructor(canvas, cellsNumbers, startPopup, gameOverPopup, retryButton, scoreNode, highScoreNode) {
+  constructor(canvas, cellsNumbers, startPopup, _gameOverPopup, retryButton, scoreNode, highScoreNode) {
     this.cellsNumbers = cellsNumbers;
     this.canvasNode = canvas;
     this.canvas = new Canvas(this.canvasNode, cellsNumbers);
     this.startPopup = startPopup;
-    this.gameOverPopup = gameOverPopup;
+    this._gameOverPopup = _gameOverPopup;
     this.retryButton = retryButton
     this.scoreNode = scoreNode;
     this.highScoreNode = highScoreNode;
@@ -27,25 +27,34 @@ class Snake {
     this.score = 0;
     this.highScore;
 
-    this.startGame = this.startGame.bind(this);
-    this.pauseButtonHandler = this.pauseButtonHandler.bind(this);
+    this._startGame = this._startGame.bind(this);
+    this._pauseButtonHandler = this._pauseButtonHandler.bind(this);
+    this._upHandler = this._upHandler.bind(this);
+    this._leftHandler = this._leftHandler.bind(this);
+    this._downHandler = this._downHandler.bind(this);
+    this._rightHandler = this._rightHandler.bind(this);
 
-    this.init();
+    this._init();
   }
 
-  init() {
-    this.createHead(10, 10, 0, 1);
-    this.createTail();
-    this.createFood();
-    window.addEventListener('keydown', this.keydownHandler.bind(this));
-    this.drawSnake();
-    this.canvasNode.addEventListener('click', this.startGame);
-    this.retryButton.addEventListener('click', this.startGame);
+  _init() {
+    this._createHead(10, 10, 0, 1);
+    this._createTail();
+    this._createFood();
+    window.addEventListener('keydown', this._keydownHandler.bind(this));
+    this._drawSnake();
+    this.canvasNode.addEventListener('click', this._startGame);
+    this.retryButton.addEventListener('click', this._startGame);
     this.highScore = localStorage.getItem('snakeHighScore') ? localStorage.getItem('snakeHighScore') : 0;
     this.highScoreNode.innerHTML = this.highScore;
+
+    document.querySelector('[data-mobile-up]').addEventListener('click', this._upHandler);
+    document.querySelector('[data-mobile-left]').addEventListener('click', this._leftHandler);
+    document.querySelector('[data-mobile-down]').addEventListener('click', this._downHandler);
+    document.querySelector('[data-mobile-right]').addEventListener('click', this._rightHandler);
   }
 
-  createHead(xCoord, yCoord, Vy, Vx) {
+  _createHead(xCoord, yCoord, Vy, Vx) {
     this.head = {
       x: xCoord,
       y: yCoord,
@@ -55,7 +64,7 @@ class Snake {
     }
   }
 
-  createTail() {
+  _createTail() {
     const xCoord = this.head.x;
     const yCoord = this.head.y;
 
@@ -64,24 +73,52 @@ class Snake {
     }
   }
 
-  drawSnake() {
+  _drawSnake() {
     this.canvas.drawEl(this.head.color, this.head.x, this.head.y);
     this.tail.forEach(item => this.canvas.drawEl(item.color, item.x, item.y));
   }
 
-  createFood() {
+  _createFood() {
     this.food = {
       x: Math.floor(Math.random() * this.cellsNumbers[0]),
       y: Math.floor(Math.random() * this.cellsNumbers[1]),
     }
 
-    if (this.head.x == this.food.x && this.head.y == this.food.y) this.createFood();
+    if (this.head.x == this.food.x && this.head.y == this.food.y) this._createFood();
     this.tail.forEach(item => {
-      if (item.x == this.food.x && item.y == this.food.y) this.createFood()
+      if (item.x == this.food.x && item.y == this.food.y) this._createFood()
     })
   }
 
-  keydownHandler(e) {
+  _upHandler() {
+    if (this.head.Vy == 1) return;
+    this.head.Vy = -1;
+    this.head.Vx = 0;
+    this.isDirectionChanded = true;
+  }
+
+  _downHandler() {
+    if (this.head.Vy == -1) return;
+    this.head.Vy = 1;
+    this.head.Vx = 0;
+    this.isDirectionChanded = true;
+  }
+  
+  _leftHandler() {
+    if (this.head.Vx == 1) return;
+    this.head.Vx = -1;
+    this.head.Vy = 0;
+    this.isDirectionChanded = true;
+  }
+
+  _rightHandler() {
+    if (this.head.Vx == -1) return;
+    this.head.Vx = 1;
+    this.head.Vy = 0;
+    this.isDirectionChanded = true;
+  }
+
+  _keydownHandler(e) {
     if (this.isDirectionChanded) {
       e.preventDefault();
       return;
@@ -90,48 +127,35 @@ class Snake {
       case 'ArrowUp':
       case 'KeyW':
         e.preventDefault();
-        if (this.head.Vy == 1) return;
-        this.head.Vy = -1;
-        this.head.Vx = 0;
-        this.isDirectionChanded = true;
+        this._upHandler();
         break;
       case 'ArrowDown':
       case 'KeyS':
         e.preventDefault();
-        if (this.head.Vy == -1) return;
-        this.head.Vy = 1;
-        this.head.Vx = 0;
-        this.isDirectionChanded = true;
+        this._downHandler();
         break;
       case 'ArrowLeft':
       case 'KeyA':
         e.preventDefault();
-        if (this.head.Vx == 1) return;
-        this.head.Vx = -1;
-        this.head.Vy = 0;
-        this.isDirectionChanded = true;
+        this._leftHandler();
         break;
       case 'ArrowRight':
       case 'KeyD':
         e.preventDefault();
-        if (this.head.Vx == -1) return;
-        this.head.Vx = 1;
-        this.head.Vy = 0;
-        this.isDirectionChanded = true;
+        this._rightHandler();
         break;
       default:
         break;
-
     }
   }
 
-  move() {
+  _move() {
     let newHeadX = this.head.x + this.head.Vx;
     let newHeadY = this.head.y + this.head.Vy;
 
     this.tail.forEach(item => {
       if (item.x == newHeadX && item.y == newHeadY) {
-        this.gameOver();
+        this._gameOver();
         return;
       }
     })
@@ -143,7 +167,7 @@ class Snake {
     else if (newHeadY < 0) newHeadY = this.cellsNumbers[1];
 
     if (newHeadX === this.food.x && newHeadY === this.food.y) {
-      this.createFood();
+      this._createFood();
       this.score++;
       this.scoreNode.innerHTML = this.score;
 
@@ -160,38 +184,38 @@ class Snake {
     this.head.y = newHeadY;
   }
 
-  changeFrame() {
+  _changeFrame() {
     if (!this.isGameStarted) return;
     this.isDirectionChanded = false;
-    this.move();
+    this._move();
     if (!this.isGameStarted) return;
     this.canvas.clear();
-    this.drawSnake();
+    this._drawSnake();
     this.canvas.drawEl(GREEN, this.food.x, this.food.y);
     this.canvas.drawGrid();
-    setTimeout(this.changeFrame.bind(this), 100);
+    setTimeout(this._changeFrame.bind(this), 100);
   }
 
-  startGame() {
-    this.canvasNode.removeEventListener('click', this.startGame);
-    this.playButton.removeEventListener('click', this.startGame);
-    this.playButton.addEventListener('click', this.pauseButtonHandler);
+  _startGame() {
+    this.canvasNode.removeEventListener('click', this._startGame);
+    this.playButton.removeEventListener('click', this._startGame);
+    this.playButton.addEventListener('click', this._pauseButtonHandler);
     this.playButton.classList.remove('button--start');
     this.playButton.classList.add('button--stop');
     this.playButton.innerHTML = 'Pause';
     this.tail = [];
-    this.createHead(10, 10, 0, 1);
-    this.createTail();
-    this.createFood();
+    this._createHead(10, 10, 0, 1);
+    this._createTail();
+    this._createFood();
     this.score = 0;
     this.scoreNode.innerHTML = this.score;
     this.startPopup.classList.add('hidden');
-    this.gameOverPopup.classList.add('hidden');
+    this._gameOverPopup.classList.add('hidden');
     this.isGameStarted = true;
-    this.changeFrame();
+    this._changeFrame();
   }
 
-  pauseButtonHandler() {
+  _pauseButtonHandler() {
     if (this.isGameStarted) {
       this.isGameStarted = false;
       this.playButton.classList.remove('button--stop');
@@ -202,13 +226,13 @@ class Snake {
       this.playButton.classList.remove('button--start');
       this.playButton.classList.add('button--stop');
       this.playButton.innerHTML = 'Pause';
-      this.changeFrame();
+      this._changeFrame();
     }
   }
 
-  gameOver() {
+  _gameOver() {
     this.isGameStarted = false;
-    this.gameOverPopup.classList.remove('hidden');
+    this._gameOverPopup.classList.remove('hidden');
     if (this.score > this.highScore) {
       const highScore = this.score;
       localStorage.setItem('snakeHighScore', highScore);

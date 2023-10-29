@@ -36,6 +36,10 @@
     align-items: center;
     gap: 32px;
     font-family: 'Lagoon beach';
+
+    @media (max-width: $tablet-width) {
+      display: none;
+    }
   }
 
   &__link {
