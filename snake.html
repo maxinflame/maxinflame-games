@@ -22,34 +22,33 @@
   </header>
 
   <main>
-    <div class="page-wrapper">
-      <div class="text-wrapper">
-        <h1>Snake</h1>
-      </div>
-      
-      <div class="game-wrapper">
-        <div class="canvas-block canvas-block--snake">
-          <canvas class="canvas-block__canvas" data-canvas></canvas>
-          <div class="play-button" data-start>
-            CLICK TO START!
-          </div>
-          <div class="game-over-popup hidden" data-game-over>
-            <span class="game-over-popup__title">GAME OVER</span>
-            <button class="button" data-retry>Retry</button>
-          </div>
+    <div class="text-wrapper page-wrapper">
+      <h1>Snake</h1>
+    </div>
+    
+    <div class="game-wrapper page-wrapper" data-game-wrapper>
+      <div class="canvas-block canvas-block--snake">
+        <canvas class="canvas-block__canvas" data-canvas></canvas>
+        <div class="play-button" data-start>
+          CLICK TO START!
         </div>
-        <div>
-          <div><span>Score: </span><span data-score>0</span></div>
-          <div><span>High score: </span><span data-high-score></span></div>
-          <div class="controls__buttons">
-            <button class="button button--start" data-play-button>Play</button>
-          </div>
-          <div class="mobile-controls">
-            <button class="mobile-controls__button mobile-controls__button--up" data-mobile-up>↑</button>
-            <button class="mobile-controls__button mobile-controls__button--left" data-mobile-left>←</button>
-            <button class="mobile-controls__button mobile-controls__button--down" data-mobile-down>↓</button>
-            <button class="mobile-controls__button mobile-controls__button--right" data-mobile-right>→</button>
-          </div>
+        <div class="game-over-popup hidden" data-game-over>
+          <span class="game-over-popup__title">GAME OVER</span>
+          <button class="button" data-retry>Retry</button>
+        </div>
+      </div>
+      <div class="game-wrapper__interface">
+        <div><span>Score: </span><span data-score>0</span></div>
+        <div><span>High score: </span><span data-high-score></span></div>
+        <div class="controls__buttons">
+          <button class="button button--start" data-play-button>Play</button>
+          <button class="button button--fullscreen" data-fullscreen-button>Fullscreen mode</button>
+        </div>
+        <div class="mobile-controls">
+          <button class="mobile-controls__button mobile-controls__button--up" data-mobile-up>↑</button>
+          <button class="mobile-controls__button mobile-controls__button--left" data-mobile-left>←</button>
+          <button class="mobile-controls__button mobile-controls__button--down" data-mobile-down>↓</button>
+          <button class="mobile-controls__button mobile-controls__button--right" data-mobile-right>→</button>
         </div>
       </div>
     </div>
