@@ -1,0 +1,34 @@
+extends ../../global/layout
+
+block variables
+
+block content
+  .text-wrapper.page-wrapper
+    h1 Snake
+  .game-wrapper.page-wrapper(data-game-wrapper='')
+    .canvas-block.canvas-block--snake
+      canvas.canvas-block__canvas(data-canvas='')
+      .play-button(data-start='')
+        | CLICK TO START!
+      .game-over-popup.hidden(data-game-over='')
+        span.game-over-popup__title GAME OVER
+        button.button(data-retry='') Retry
+    .game-wrapper__interface
+      div
+        span Score: 
+        span(data-score='') 0
+      div
+        span High score: 
+        span(data-high-score='')
+      .controls__buttons
+        button.button.button--start(data-play-button='') Play
+        button.button.button--fullscreen(data-fullscreen-button='') Fullscreen mode
+      .mobile-controls
+        button.mobile-controls__button.mobile-controls__button--up(data-mobile-up='') &uarr;
+        button.mobile-controls__button.mobile-controls__button--left(data-mobile-left='') &larr;
+        button.mobile-controls__button.mobile-controls__button--down(data-mobile-down='') &darr;
+        button.mobile-controls__button.mobile-controls__button--right(data-mobile-right='') &rarr;
+
+block scripts
+  script(src='/js/modules/variables.js')
+  script(src='/js/snake-game.js' type='module')
