@@ -34,7 +34,11 @@ const mincss = () => {
 
 const createHtml = () => {
   return gulp.src('./src/pug/pages/**/*.pug')
-    .pipe(pug())
+    .pipe(pug(
+      {
+        pretty: true
+      }
+    ))
     .pipe(gulp.dest('./dist'))
 }
 
