@@ -4,9 +4,8 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp",
-    "dev": "gulp"
+    "dev": "gulp start",
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +13,18 @@
     "g": "^2.0.1"
   },
   "devDependencies": {
+    "@zoxon/emitty": "^1.4.2",
     "browser-sync": "^2.29.3",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.8.1",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
+    "gulp-if": "^3.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
-    "sass": "^1.67.0"
+    "sass": "^1.69.6",
+    "style-loader": "^3.3.3",
+    "webpack-stream": "^7.0.0"
   }
 }

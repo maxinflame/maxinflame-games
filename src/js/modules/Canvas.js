@@ -1,3 +1,6 @@
+import { LIGHT_LINES_COLOR } from './variables.js';
+import { PURPLE } from './variables.js';
+
 class Canvas {  
   constructor(node, cellsNumber) {
     this.node = node;

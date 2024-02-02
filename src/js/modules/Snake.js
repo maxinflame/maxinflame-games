@@ -1,4 +1,5 @@
 import {Canvas} from './Canvas.js'
+import { PURPLE, GREEN } from './variables.js';
 
 class TailPart {
   constructor(x, y) {
