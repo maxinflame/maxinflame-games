@@ -1,0 +1,13 @@
+.submit-score-form {
+  width: 100%;
+
+  &__title {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 8px;
+  }
+}

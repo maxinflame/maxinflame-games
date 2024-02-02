@@ -1,0 +1,9 @@
+.game-over-popup.hidden(data-game-over)
+  span.game-over-popup__title GAME OVER
+  button.button(data-retry='') Retry
+  form(action data-submit-score-form).submit-score-form
+    span.submit-score-form__title Save your score
+    .submit-score-form__wrapper
+      input(type="text" name="name" placeholder="your name").input
+      button(type="submit").button save
+      input(type="text" name="score").visually-hidden

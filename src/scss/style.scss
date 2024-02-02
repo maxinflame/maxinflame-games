@@ -2,12 +2,14 @@
 @import "global/fonts.scss";
 @import "global/mixins.scss";
 @import "global/general.scss";
+@import "blocks/visually-hidden.scss";
 @import "blocks/page-wrapper.scss";
 @import "blocks/page-footer.scss";
 @import "blocks/text-wrapper.scss";
 @import "blocks/page-header.scss";
 @import "blocks/text-link.scss";
 @import "blocks/button.scss";
+@import "blocks/input.scss";
 @import "blocks/game-wrapper.scss";
 @import "blocks/canvas-block.scss";
 @import "blocks/controls.scss";
@@ -15,3 +17,4 @@
 @import "blocks/game-over-popup.scss";
 @import "blocks/games-list.scss";
 @import "blocks/mobile-controls.scss";  
+@import "blocks/submit-score-form.scss";

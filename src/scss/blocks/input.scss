@@ -1,0 +1,13 @@
+.input {
+  width: 100%;
+  background: transparent;
+  outline: none;
+  border: 1px solid $lines-light;
+  padding: 4px;
+  font-family: $main-font;
+  color: $lines-light;
+
+  &::placeholder {
+    color: $lines-light;
+  }
+}

@@ -18,12 +18,19 @@
   <div class="text-wrapper page-wrapper">
     <h1>Snake</h1>
   </div>
-  <div class="game-wrapper page-wrapper" data-game-wrapper="">
+  <div class="game-wrapper page-wrapper" data-game-wrapper>
     <div class="canvas-block canvas-block--snake">
-      <canvas class="canvas-block__canvas" data-canvas=""></canvas>
+      <canvas class="canvas-block__canvas" data-canvas></canvas>
       <div class="play-button" data-start="">CLICK TO START!</div>
-      <div class="game-over-popup hidden" data-game-over=""><span class="game-over-popup__title">GAME OVER</span>
+      <div class="game-over-popup hidden" data-game-over><span class="game-over-popup__title">GAME OVER</span>
         <button class="button" data-retry="">Retry</button>
+        <form class="submit-score-form" action data-submit-score-form><span class="submit-score-form__title">Save your score</span>
+          <div class="submit-score-form__wrapper">
+            <input class="input" type="text" name="name" placeholder="your name">
+            <button class="button" type="submit">save</button>
+            <input class="visually-hidden" type="text" name="score">
+          </div>
+        </form>
       </div>
     </div>
     <div class="game-wrapper__interface">

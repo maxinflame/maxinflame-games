@@ -5,14 +5,12 @@ block variables
 block content
   .text-wrapper.page-wrapper
     h1 Snake
-  .game-wrapper.page-wrapper(data-game-wrapper='')
+  .game-wrapper.page-wrapper(data-game-wrapper)
     .canvas-block.canvas-block--snake
-      canvas.canvas-block__canvas(data-canvas='')
+      canvas.canvas-block__canvas(data-canvas)
       .play-button(data-start='')
         | CLICK TO START!
-      .game-over-popup.hidden(data-game-over='')
-        span.game-over-popup__title GAME OVER
-        button.button(data-retry='') Retry
+      include ./../blocks/game-over-popup
     .game-wrapper__interface
       div
         span Score: 

@@ -1,4 +1,5 @@
-import {Canvas} from './Canvas.js'
+import {Canvas} from './Canvas.js';
+import { SubmitScoreForm } from './SubmitScoreForm.js';
 import { PURPLE, GREEN } from './variables.js';
 
 class TailPart {
@@ -27,6 +28,7 @@ class Snake {
     this.isGameStarted = false;
     this.score = 0;
     this.highScore;
+    this._submitScoreForm = new SubmitScoreForm(document.querySelector('[data-submit-score-form]'))
 
     this._startGame = this._startGame.bind(this);
     this._pauseButtonHandler = this._pauseButtonHandler.bind(this);
@@ -120,6 +122,7 @@ class Snake {
   }
 
   _keydownHandler(e) {
+    if (!this.isGameStarted) return true;
     if (this.isDirectionChanded) {
       e.preventDefault();
       return;
@@ -232,12 +235,14 @@ class Snake {
   }
 
   _gameOver() {
+    const score = this.score;
+
     this.isGameStarted = false;
+    this._submitScoreForm.updateScore(score);
     this._gameOverPopup.classList.remove('hidden');
-    if (this.score > this.highScore) {
-      const highScore = this.score;
-      localStorage.setItem('snakeHighScore', highScore);
-      this.highScore = this.score;
+    if (score > this.highScore) {
+      localStorage.setItem('snakeHighScore', score);
+      this.highScore = score;
     }
   }
 }
