@@ -1,0 +1,13 @@
+.score-table {
+  border-collapse: collapse;
+
+  &--short {
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  &__cell {
+    border: 1px solid $lines-light;
+    padding: 8px 16px;
+  }
+}

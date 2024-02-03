@@ -3,29 +3,41 @@ extends ../global/layout
 block variables
 
 block content
-  .text-wrapper.page-wrapper
-    h1 Snake
-  .game-wrapper.page-wrapper(data-game-wrapper)
-    .canvas-block.canvas-block--snake
-      canvas.canvas-block__canvas(data-canvas)
-      .play-button(data-start='')
-        | CLICK TO START!
-      include ./../blocks/game-over-popup
-    .game-wrapper__interface
-      div
-        span Score: 
-        span(data-score='') 0
-      div
-        span High score: 
-        span(data-high-score='')
-      .controls__buttons
-        button.button.button--start(data-play-button='') Play
-        button.button.button--fullscreen(data-fullscreen-button='') Fullscreen mode
-      .mobile-controls
-        button.mobile-controls__button.mobile-controls__button--up(data-mobile-up='') &uarr;
-        button.mobile-controls__button.mobile-controls__button--left(data-mobile-left='') &larr;
-        button.mobile-controls__button.mobile-controls__button--down(data-mobile-down='') &darr;
-        button.mobile-controls__button.mobile-controls__button--right(data-mobile-right='') &rarr;
+  .page-wrapper
+    .text-wrapper
+      h1.heading-1 Snake
+    .game-wrapper(data-game-wrapper)
+      .canvas-block.canvas-block--snake
+        canvas.canvas-block__canvas(data-canvas)
+        .play-button(data-start='')
+          | CLICK TO START!
+        include ./../blocks/game-over-popup
+      .game-wrapper__interface
+        div
+          span Score: 
+          span(data-score='') 0
+        div
+          span High score: 
+          span(data-high-score='')
+        .controls__buttons
+          button.button.button--start(data-play-button='') Play
+          button.button.button--fullscreen(data-fullscreen-button='') Fullscreen mode
+        .mobile-controls
+          button.mobile-controls__button.mobile-controls__button--up(data-mobile-up='') &uarr;
+          button.mobile-controls__button.mobile-controls__button--left(data-mobile-left='') &larr;
+          button.mobile-controls__button.mobile-controls__button--down(data-mobile-down='') &darr;
+          button.mobile-controls__button.mobile-controls__button--right(data-mobile-right='') &rarr;
+        table.score-table.score-table--short
+          tbody 
+            tr
+              td.score-table__cell nagibator228
+              td.score-table__cell 420
+            tr
+              td.score-table__cell uranus_in_flame
+              td.score-table__cell 146
+            tr
+              td.score-table__cell kopatel2004
+              td.score-table__cell 69
 
 block scripts
   script(src='/js/snake.js' type='module')

@@ -15,36 +15,54 @@
   </div>
 </header>
 <main>
-  <div class="text-wrapper page-wrapper">
-    <h1>Snake</h1>
-  </div>
-  <div class="game-wrapper page-wrapper" data-game-wrapper>
-    <div class="canvas-block canvas-block--snake">
-      <canvas class="canvas-block__canvas" data-canvas></canvas>
-      <div class="play-button" data-start="">CLICK TO START!</div>
-      <div class="game-over-popup hidden" data-game-over><span class="game-over-popup__title">GAME OVER</span>
-        <button class="button" data-retry="">Retry</button>
-        <form class="submit-score-form" action data-submit-score-form><span class="submit-score-form__title">Save your score</span>
-          <div class="submit-score-form__wrapper">
-            <input class="input" type="text" name="name" placeholder="your name">
-            <button class="button" type="submit">save</button>
-            <input class="visually-hidden" type="text" name="score">
-          </div>
-        </form>
-      </div>
+  <div class="page-wrapper">
+    <div class="text-wrapper">
+      <h1 class="heading-1">Snake</h1>
     </div>
-    <div class="game-wrapper__interface">
-      <div><span>Score: </span><span data-score="">0</span></div>
-      <div><span>High score: </span><span data-high-score=""></span></div>
-      <div class="controls__buttons">
-        <button class="button button--start" data-play-button="">Play</button>
-        <button class="button button--fullscreen" data-fullscreen-button="">Fullscreen mode</button>
+    <div class="game-wrapper" data-game-wrapper>
+      <div class="canvas-block canvas-block--snake">
+        <canvas class="canvas-block__canvas" data-canvas></canvas>
+        <div class="play-button" data-start="">CLICK TO START!</div>
+        <div class="game-over-popup hidden" data-game-over><span class="game-over-popup__title">GAME OVER</span>
+          <form class="submit-score-form" action data-submit-score-form><span class="submit-score-form__title">Save your score</span>
+            <div class="submit-score-form__wrapper">
+              <input class="input" type="text" name="name" placeholder="your name">
+              <button class="button" type="submit">save</button>
+              <input class="visually-hidden" type="text" name="score">
+            </div>
+          </form>
+          <button class="button" data-retry="">Retry</button>
+        </div>
       </div>
-      <div class="mobile-controls">
-        <button class="mobile-controls__button mobile-controls__button--up" data-mobile-up="">&uarr;</button>
-        <button class="mobile-controls__button mobile-controls__button--left" data-mobile-left="">&larr;</button>
-        <button class="mobile-controls__button mobile-controls__button--down" data-mobile-down="">&darr;</button>
-        <button class="mobile-controls__button mobile-controls__button--right" data-mobile-right="">&rarr;</button>
+      <div class="game-wrapper__interface">
+        <div><span>Score: </span><span data-score="">0</span></div>
+        <div><span>High score: </span><span data-high-score=""></span></div>
+        <div class="controls__buttons">
+          <button class="button button--start" data-play-button="">Play</button>
+          <button class="button button--fullscreen" data-fullscreen-button="">Fullscreen mode</button>
+        </div>
+        <div class="mobile-controls">
+          <button class="mobile-controls__button mobile-controls__button--up" data-mobile-up="">&uarr;</button>
+          <button class="mobile-controls__button mobile-controls__button--left" data-mobile-left="">&larr;</button>
+          <button class="mobile-controls__button mobile-controls__button--down" data-mobile-down="">&darr;</button>
+          <button class="mobile-controls__button mobile-controls__button--right" data-mobile-right="">&rarr;</button>
+        </div>
+        <table class="score-table score-table--short">
+          <tbody> 
+            <tr>
+              <td class="score-table__cell">nagibator228</td>
+              <td class="score-table__cell">420</td>
+            </tr>
+            <tr>
+              <td class="score-table__cell">uranus_in_flame</td>
+              <td class="score-table__cell">146</td>
+            </tr>
+            <tr>
+              <td class="score-table__cell">kopatel2004</td>
+              <td class="score-table__cell">69</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
