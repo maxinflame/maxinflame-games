@@ -13,9 +13,9 @@ const rename = require('gulp-rename');
 const PATHS = {
   PUG: 'src/pug/',
   PUG_PAGES: 'src/pug/pages/',
-  HTML_DIST: './build/',
+  HTML_DIST: './docs/',
   JS: 'src/js',
-  JS_DIST: 'build/js',
+  JS_DIST: 'docs/js',
   SCSS_SRC: 'src/scss',
   SCSS: [
     {
@@ -23,7 +23,7 @@ const PATHS = {
       filename: 'style',
     },
   ],
-  CSS_DIST: 'build/css',
+  CSS_DIST: 'docs/css',
 }
 
 // Server initilization
