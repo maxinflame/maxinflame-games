@@ -15,7 +15,7 @@ class SubmitScoreForm {
 
   async _submitHandler(e) {
     e.preventDefault();
-    const url = window.location.href;
+    const url = `${window.location.origin}/scores/snake`;
 
     let response = await fetch(url, {
       method: 'POST',
