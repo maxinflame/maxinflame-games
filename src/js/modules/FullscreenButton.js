@@ -21,7 +21,9 @@ class FullscreenButton {
   }
 
   _buttonHandler() {
-    this._gameWrapper.classList.contains('fullscreen-mode')? this._closeFullscreen(): this._openFullscreen();
+    this._gameWrapper.classList.contains('fullscreen-mode')
+      ? this._closeFullscreen()
+      : this._openFullscreen();
   }
 }
 

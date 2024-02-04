@@ -20,6 +20,10 @@
     & .mobile-controls {
       margin-top: auto;
     }
+
+    & .score-table {
+      display: none;
+    }
   }
 
   @media(max-width: $tablet-width) {

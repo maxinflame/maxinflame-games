@@ -1,0 +1,18 @@
+.game-page-table {
+  margin-top: 36px;
+
+  &__title {
+    color: $lines-light;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  &__table {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  &__link {
+    color: $lines-light;
+  }
+}

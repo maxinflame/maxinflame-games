@@ -27,17 +27,20 @@ block content
           button.mobile-controls__button.mobile-controls__button--left(data-mobile-left='') &larr;
           button.mobile-controls__button.mobile-controls__button--down(data-mobile-down='') &darr;
           button.mobile-controls__button.mobile-controls__button--right(data-mobile-right='') &rarr;
-        table.score-table.score-table--short
-          tbody 
-            tr
-              td.score-table__cell nagibator228
-              td.score-table__cell 420
-            tr
-              td.score-table__cell uranus_in_flame
-              td.score-table__cell 146
-            tr
-              td.score-table__cell kopatel2004
-              td.score-table__cell 69
+        .game-page-table
+          a(href="score-table.html").heading-3.game-page-table__title Best Scores
+          table.score-table.game-page-table__table
+            tbody 
+              tr
+                td.score-table__cell nagibator228
+                td.score-table__cell 420
+              tr
+                td.score-table__cell uranus_in_flame
+                td.score-table__cell 146
+              tr
+                td.score-table__cell kopatel2004
+                td.score-table__cell 69
+          a(href="score-table.html").game-page-table__link View all 
 
 block scripts
   script(src='./js/snake.js' type='module')

@@ -48,6 +48,7 @@ class Snake {
     this._drawSnake();
     this.canvasNode.addEventListener('click', this._startGame);
     this.retryButton.addEventListener('click', this._startGame);
+    this.playButton.addEventListener('click', this._startGame);
     this.highScore = localStorage.getItem('snakeHighScore') ? localStorage.getItem('snakeHighScore') : 0;
     this.highScoreNode.innerHTML = this.highScore;
 
