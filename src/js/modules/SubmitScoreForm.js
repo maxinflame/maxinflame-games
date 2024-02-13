@@ -24,13 +24,12 @@ class SubmitScoreForm {
     })
 
     let json = await response.json();
-    console.log(json);
 
-    // if (!response) {
-    //   this._onError();
-    // } else {
-    //   this._onSuccess(response);
-    // }
+    if (!response) {
+      this._onError();
+    } else {
+      this._onSuccess(json);
+    }
   }
 
   _onError() {
