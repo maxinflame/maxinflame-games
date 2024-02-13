@@ -12,6 +12,26 @@
   align-items: center;
   gap: 16px;
 
+  &.error {
+    & .game-over-popup__error-message {
+      display: block;
+    }
+
+    & .submit-score-form {
+      display: none;
+    }
+  }
+
+  &.success {
+    & .game-over-popup__success-message {
+      display: block;
+    }
+
+    & .submit-score-form {
+      display: none;
+    }
+  }
+
   &.hidden {
     display: none;
   }
@@ -21,5 +41,13 @@
     font-size: 48px;
     font-family: "Press Start 2P", cursive;
     text-align: center;
+  }
+
+  &__error-message {
+    display: none;
+  }
+
+  &__success-message {
+    display: none;
   }
 }

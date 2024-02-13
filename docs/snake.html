@@ -30,13 +30,13 @@
               <button class="button" type="submit">save</button>
               <input class="visually-hidden" type="text" name="score">
             </div>
-          </form>
+          </form><span class="game-over-popup__error-message">Something went wrong</span><span class="game-over-popup__success-message">Your score is saved</span>
           <button class="button" data-retry="">Retry</button>
         </div>
       </div>
       <div class="game-wrapper__interface">
         <div><span>Score: </span><span data-score="">0</span></div>
-        <div><span>High score: </span><span data-high-score=""></span></div>
+        <div><span>High score: </span><span data-high-score></span></div>
         <div class="controls__buttons">
           <button class="button button--start" data-play-button="">Play</button>
           <button class="button button--fullscreen" data-fullscreen-button="">Fullscreen mode</button>
@@ -49,7 +49,7 @@
         </div>
         <div class="game-page-table"><a class="heading-3 game-page-table__title" href="score-table.html">Best Scores</a>
           <table class="score-table game-page-table__table">
-            <tbody> 
+            <tbody data-result-table>
               <tr>
                 <td class="score-table__cell">nagibator228</td>
                 <td class="score-table__cell">420</td>

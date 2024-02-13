@@ -18,7 +18,7 @@ block content
           span(data-score='') 0
         div
           span High score: 
-          span(data-high-score='')
+          span(data-high-score)
         .controls__buttons
           button.button.button--start(data-play-button='') Play
           button.button.button--fullscreen(data-fullscreen-button='') Fullscreen mode
@@ -30,7 +30,7 @@ block content
         .game-page-table
           a(href="score-table.html").heading-3.game-page-table__title Best Scores
           table.score-table.game-page-table__table
-            tbody 
+            tbody(data-result-table)
               tr
                 td.score-table__cell nagibator228
                 td.score-table__cell 420

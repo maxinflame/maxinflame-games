@@ -216,6 +216,8 @@ class Snake {
     this.scoreNode.innerHTML = this.score;
     this.startPopup.classList.add('hidden');
     this._gameOverPopup.classList.add('hidden');
+    this._gameOverPopup.classList.remove('error');
+    this._gameOverPopup.classList.remove('success');
     this.isGameStarted = true;
     this._changeFrame();
   }
