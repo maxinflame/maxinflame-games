@@ -23,6 +23,8 @@ class SubmitScoreForm {
       body: new FormData(this._form),
     })
 
+    console.log(response);
+
     if (!response) {
       this._onError();
     } else {
