@@ -1,7 +1,4 @@
-import { CELLS_NUMBER } from './snake-variables';
-
-const HEAD_COORD = [10, 10];
-const HEAD_SPEED = [0, 1];
+import { CELLS_NUMBER, HEAD_COORD, HEAD_SPEED } from './snake-variables';
 
 class TailPart {
   constructor(x, y) {
@@ -11,7 +8,7 @@ class TailPart {
 }
 
 class SnakeGame {
-  constructor(onGameOver, onFoodEaten) {
+  constructor(onGameOver = () => {}, onFoodEaten = () => {}) {
     this._onGameOver = onGameOver;
     this._onFoodEaten = onFoodEaten;
 
