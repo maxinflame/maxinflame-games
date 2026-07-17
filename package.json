@@ -13,16 +13,21 @@
     "g": "^2.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@zoxon/emitty": "^1.4.2",
     "browser-sync": "^2.29.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.7.0",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-if": "^3.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "prettier": "^3.9.5",
     "sass": "^1.69.6",
     "style-loader": "^3.3.3",
     "webpack-stream": "^7.0.0"

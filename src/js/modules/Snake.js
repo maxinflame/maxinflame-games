@@ -1,4 +1,4 @@
-import {Canvas} from './Canvas.js';
+import { Canvas } from './Canvas.js';
 import { SubmitScoreForm } from './SubmitScoreForm.js';
 import { PURPLE, GREEN } from './variables.js';
 
@@ -11,13 +11,21 @@ class TailPart {
 }
 
 class Snake {
-  constructor(canvas, cellsNumbers, startPopup, _gameOverPopup, retryButton, scoreNode, highScoreNode) {
+  constructor(
+    canvas,
+    cellsNumbers,
+    startPopup,
+    _gameOverPopup,
+    retryButton,
+    scoreNode,
+    highScoreNode
+  ) {
     this.cellsNumbers = cellsNumbers;
     this.canvasNode = canvas;
     this.canvas = new Canvas(this.canvasNode, cellsNumbers);
     this.startPopup = startPopup;
     this._gameOverPopup = _gameOverPopup;
-    this.retryButton = retryButton
+    this.retryButton = retryButton;
     this.scoreNode = scoreNode;
     this.highScoreNode = highScoreNode;
     this.playButton = document.querySelector('[data-play-button]');
@@ -28,7 +36,7 @@ class Snake {
     this.isGameStarted = false;
     this.score = 0;
     this.highScore;
-    this._submitScoreForm = new SubmitScoreForm(document.querySelector('[data-submit-score-form]'))
+    this._submitScoreForm = new SubmitScoreForm(document.querySelector('[data-submit-score-form]'));
 
     this._startGame = this._startGame.bind(this);
     this._pauseButtonHandler = this._pauseButtonHandler.bind(this);
@@ -49,7 +57,9 @@ class Snake {
     this.canvasNode.addEventListener('click', this._startGame);
     this.retryButton.addEventListener('click', this._startGame);
     this.playButton.addEventListener('click', this._startGame);
-    this.highScore = localStorage.getItem('snakeHighScore') ? localStorage.getItem('snakeHighScore') : 0;
+    this.highScore = localStorage.getItem('snakeHighScore')
+      ? localStorage.getItem('snakeHighScore')
+      : 0;
     this.highScoreNode.innerHTML = this.highScore;
 
     document.querySelector('[data-mobile-up]').addEventListener('click', this._upHandler);
@@ -65,33 +75,34 @@ class Snake {
       Vy: Vy,
       Vx: Vx,
       color: PURPLE,
-    }
+    };
   }
 
   _createTail() {
     const xCoord = this.head.x;
     const yCoord = this.head.y;
 
-    for(let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4; i++) {
       this.tail.push(new TailPart(xCoord - i, yCoord));
     }
   }
 
   _drawSnake() {
     this.canvas.drawEl(this.head.color, this.head.x, this.head.y);
-    this.tail.forEach(item => this.canvas.drawEl(item.color, item.x, item.y));
+    this.tail.forEach((item) => this.canvas.drawEl(item.color, item.x, item.y));
   }
 
   _createFood() {
     this.food = {
       x: Math.floor(Math.random() * this.cellsNumbers[0]),
       y: Math.floor(Math.random() * this.cellsNumbers[1]),
-    }
+    };
 
     if (this.head.x == this.food.x && this.head.y == this.food.y) this._createFood();
-    this.tail.forEach(item => {
-      if (item.x == this.food.x && item.y == this.food.y) this._createFood()
-    })
+
+    this.tail.forEach((item) => {
+      if (item.x == this.food.x && item.y == this.food.y) this._createFood();
+    });
   }
 
   _upHandler() {
@@ -107,7 +118,7 @@ class Snake {
     this.head.Vx = 0;
     this.isDirectionChanded = true;
   }
-  
+
   _leftHandler() {
     if (this.head.Vx == 1) return;
     this.head.Vx = -1;
@@ -158,17 +169,17 @@ class Snake {
     let newHeadX = this.head.x + this.head.Vx;
     let newHeadY = this.head.y + this.head.Vy;
 
-    this.tail.forEach(item => {
+    this.tail.forEach((item) => {
       if (item.x == newHeadX && item.y == newHeadY) {
         this._gameOver();
         return;
       }
-    })
+    });
 
     if (newHeadX > this.cellsNumbers[0] - 1) newHeadX = 0;
     else if (newHeadX < 0) newHeadX = this.cellsNumbers[0] - 1;
 
-    if (newHeadY > this.cellsNumbers[1] - 1) newHeadY = 0
+    if (newHeadY > this.cellsNumbers[1] - 1) newHeadY = 0;
     else if (newHeadY < 0) newHeadY = this.cellsNumbers[1];
 
     if (newHeadX === this.food.x && newHeadY === this.food.y) {
@@ -176,14 +187,14 @@ class Snake {
       this.score++;
       this.scoreNode.innerHTML = this.score;
 
-      if (this.score > this.highScore) { 
+      if (this.score > this.highScore) {
         this.highScoreNode.innerHTML = this.score;
       }
     } else {
       this.tail.pop();
     }
-    
-    this.tail.unshift(new TailPart(this.head.x, this.head.y))
+
+    this.tail.unshift(new TailPart(this.head.x, this.head.y));
 
     this.head.x = newHeadX;
     this.head.y = newHeadY;
@@ -243,6 +254,7 @@ class Snake {
     this.isGameStarted = false;
     this._submitScoreForm.updateScore(score);
     this._gameOverPopup.classList.remove('hidden');
+
     if (score > this.highScore) {
       localStorage.setItem('snakeHighScore', score);
       this.highScore = score;
@@ -250,4 +262,4 @@ class Snake {
   }
 }
 
-export {Snake}
+export { Snake };
