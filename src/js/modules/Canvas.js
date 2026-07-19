@@ -1,7 +1,7 @@
 import { LIGHT_LINES_COLOR } from './variables.js';
 import { PURPLE } from './variables.js';
 
-class Canvas {  
+class Canvas {
   constructor(node, cellsNumber) {
     this.node = node;
     this.ctx = this.node.getContext('2d');
@@ -20,16 +20,23 @@ class Canvas {
   }
 
   setSize() {
-    this.node.width = this.node.offsetWidth;
-    this.node.height = this.node.offsetWidth * (this.cellsNumber[1] / this.cellsNumber[0]);
-    this.cellSize = this.node.offsetWidth / this.cellsNumber[0];
+    // Размер клетки считаем по высоте
+    this.cellSize = this.node.offsetHeight / this.cellsNumber[1];
+
+    // Настраиваем внутренний буфер canvas
+    this.node.height = this.cellSize * this.cellsNumber[1];
+    this.node.width = this.cellSize * this.cellsNumber[0];
+
+    // И такой же CSS-размер
+    this.node.style.height = `${this.node.height}px`;
+    this.node.style.width = `${this.node.width}px`;
   }
 
   drawField(arr) {
     this.ctx.clearRect(0, 0, this.node.offsetWidth, this.node.offsetHeight);
     this.ctx.fillStyle = PURPLE;
     for (let i = 0; i < this.cellsNumber[0]; i++) {
-      for(let j = 0; j < this.cellsNumber[1]; j++) {
+      for (let j = 0; j < this.cellsNumber[1]; j++) {
         if (arr[i][j] === 1) {
           this.ctx.fillRect(j * this.cellSize, i * this.cellSize, this.cellSize, this.cellSize);
         }
@@ -40,12 +47,12 @@ class Canvas {
 
   drawEl(color, x, y) {
     this.ctx.fillStyle = color;
-    this.ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize)
+    this.ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
   }
 
   drawGrid() {
     this.ctx.beginPath();
-    
+
     let xCoord = 0;
     let yCoord = 0;
 
@@ -70,4 +77,4 @@ class Canvas {
   }
 }
 
-export {Canvas}
+export { Canvas };

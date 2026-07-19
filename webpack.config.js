@@ -4,7 +4,8 @@ module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
     life: './src/js/life.js',
-    snake: './src/js/snake.js', 
+    snake: './src/js/snake.js',
+    tetris: './src/js/tetris.js',
   },
   output: {
     filename: '[name].js',
@@ -14,8 +15,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
-}
+};
