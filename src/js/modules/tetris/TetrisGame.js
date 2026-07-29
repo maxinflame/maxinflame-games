@@ -1,11 +1,16 @@
 import { TetraminoFactory } from './TetraminoFactory';
 import { FIELD_SIZE } from './tetrisVariables';
 
+const DEFAULT_DROP_DELAY = 300;
+const SPEED_UP_DROP_DELAY = 50;
+
 class TetrisGame {
   constructor() {
     this._field = [];
     this._piece = null;
     this._listeners = {};
+    this._isRunning = false;
+    this._dropDelay = DEFAULT_DROP_DELAY;
 
     this._changeFrame = this._changeFrame.bind(this);
 
@@ -21,7 +26,16 @@ class TetrisGame {
     this._field = Array.from({ length: FIELD_SIZE.y }, () => Array(FIELD_SIZE.x).fill(0));
   }
 
+  reset() {
+    this._isRunning = false;
+    this._createField();
+    this._piece = null;
+    this.setDefaultSpeed();
+  }
+
   startGame() {
+    this._isRunning = true;
+    this._createField();
     this._createNewPiece();
     this._changeFrame();
   }
@@ -34,6 +48,8 @@ class TetrisGame {
   }
 
   async _changeFrame() {
+    if (!this._isRunning) return;
+
     if (this._canPlace(this._piece.shape, this._piece.x, this._piece.y + 1)) {
       this.move('down', false);
     } else {
@@ -59,7 +75,7 @@ class TetrisGame {
 
     this._emit('changeFrame');
 
-    setTimeout(this._changeFrame, 300);
+    setTimeout(this._changeFrame, this._dropDelay);
   }
 
   _getFilledRows() {
@@ -134,6 +150,14 @@ class TetrisGame {
     }
   }
 
+  speedUp() {
+    this._dropDelay = SPEED_UP_DROP_DELAY;
+  }
+
+  setDefaultSpeed() {
+    this._dropDelay = DEFAULT_DROP_DELAY;
+  }
+
   _canPlace(shape, x, y) {
     for (let row = 0; row < shape.length; row++) {
       for (let col = 0; col < shape[row].length; col++) {
@@ -174,7 +198,19 @@ class TetrisGame {
   }
 
   _isItGameOver() {
-    return this._piece.y < 1;
+    const shape = this._piece.shape;
+
+    for (let y = 0; y < shape.length; y++) {
+      for (let x = 0; x < shape[y].length; x++) {
+        if (!shape[y][x]) continue;
+
+        if (this._piece.y + y < 0) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   on(event, callback) {

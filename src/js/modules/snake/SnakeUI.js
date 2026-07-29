@@ -1,16 +1,19 @@
 import { Canvas } from '../Canvas.js';
+import { GameOverPopup } from '../GameOverPopup.js';
 import { SubmitScoreForm } from '../SubmitScoreForm.js';
 import { PURPLE, GREEN } from '../variables.js';
 import { CELLS_NUMBER } from './snake-variables.js';
 import { SnakeGame } from './SnakeGame.js';
 
 class SnakeUI {
-  constructor(canvas, startPopup, _gameOverPopup, retryButton, scoreNode, highScoreNode) {
+  constructor(canvas, startPopup, _gameOverPopup, scoreNode, highScoreNode) {
     this.canvasNode = canvas;
     this.canvas = new Canvas(this.canvasNode, CELLS_NUMBER);
     this.startPopup = startPopup;
-    this._gameOverPopup = _gameOverPopup;
-    this.retryButton = retryButton;
+
+    this._gameOverPopupNode = document.querySelector('[data-game-over]');
+    this._gameOverPopup = new GameOverPopup(this._gameOverPopupNode);
+
     this.scoreNode = scoreNode;
     this.highScoreNode = highScoreNode;
     this.playButton = document.querySelector('[data-play-button]');
@@ -37,16 +40,16 @@ class SnakeUI {
     this._drawSnake();
 
     this.canvasNode.addEventListener('click', this._startGame);
-    this.retryButton.addEventListener('click', this._startGame);
     this.playButton.addEventListener('click', this._startGame);
+    this._gameOverPopup.on('retry', this._startGame);
     this.highScore = localStorage.getItem('snakeHighScore')
       ? localStorage.getItem('snakeHighScore')
       : 0;
     this.highScoreNode.innerHTML = this.highScore;
-    document.querySelector('[data-mobile-up]').addEventListener('click', this._upHandler);
-    document.querySelector('[data-mobile-left]').addEventListener('click', this._leftHandler);
-    document.querySelector('[data-mobile-down]').addEventListener('click', this._downHandler);
-    document.querySelector('[data-mobile-right]').addEventListener('click', this._rightHandler);
+    // document.querySelector('[data-mobile-up]').addEventListener('click', this._upHandler);
+    // document.querySelector('[data-mobile-left]').addEventListener('click', this._leftHandler);
+    // document.querySelector('[data-mobile-down]').addEventListener('click', this._downHandler);
+    // document.querySelector('[data-mobile-right]').addEventListener('click', this._rightHandler);
   }
 
   _drawSnake() {
@@ -76,7 +79,6 @@ class SnakeUI {
       case 'KeyW':
         e.preventDefault();
         this._snakeGame.setDirection('up');
-        this._upHandler();
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -125,9 +127,9 @@ class SnakeUI {
     this.score = 0;
     this.scoreNode.innerHTML = this.score;
     this.startPopup.classList.add('hidden');
-    this._gameOverPopup.classList.add('hidden');
-    this._gameOverPopup.classList.remove('error');
-    this._gameOverPopup.classList.remove('success');
+
+    this._gameOverPopup.hide();
+
     this.isGameStarted = true;
 
     this._changeFrame();
@@ -153,7 +155,8 @@ class SnakeUI {
 
     this.isGameStarted = false;
     this._submitScoreForm.updateScore(score);
-    this._gameOverPopup.classList.remove('hidden');
+
+    this._gameOverPopup.show();
 
     if (score > this.highScore) {
       localStorage.setItem('snakeHighScore', score);

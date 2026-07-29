@@ -1,11 +1,15 @@
 import { Canvas } from '../Canvas';
 import { PURPLE } from '../variables';
+import { GameOverPopup } from '../GameOverPopup';
 import { TetrisGame } from './TetrisGame';
 import { FIELD_SIZE } from './tetrisVariables';
 
 class TetrisUI {
   constructor(canvas) {
     this._canvas = new Canvas(canvas, [FIELD_SIZE.x, FIELD_SIZE.y]);
+
+    this._gameOverPopupNode = document.querySelector('[data-game-over]');
+    this._gameOverPopup = new GameOverPopup(this._gameOverPopupNode);
 
     this._changeFrameHandler = this._changeFrameHandler.bind(this);
 
@@ -16,15 +20,24 @@ class TetrisUI {
     this._tetrisGame = new TetrisGame();
 
     this._tetrisGame.on('changeFrame', this._changeFrameHandler);
-    this._tetrisGame.on('gameOver', () => console.log('Game Over'));
+    this._tetrisGame.on('gameOver', this._gameOver.bind(this));
+
+    this._gameOverPopup.on('retry', this._startGame.bind(this));
 
     window.addEventListener('keydown', this._keydownHandler.bind(this));
+    window.addEventListener('keyup', this._keyupHandler.bind(this));
 
     this._startGame();
   }
 
   _startGame() {
+    this._gameOverPopup.hide();
+    this._tetrisGame.reset();
     this._tetrisGame.startGame();
+  }
+
+  _gameOver() {
+    this._gameOverPopup.show();
   }
 
   _changeFrameHandler() {
@@ -73,6 +86,7 @@ class TetrisUI {
       case 'ArrowDown':
       case 'KeyS':
         e.preventDefault();
+        this._tetrisGame.speedUp();
         break;
       case 'ArrowLeft':
       case 'KeyA':
@@ -83,6 +97,15 @@ class TetrisUI {
       case 'KeyD':
         e.preventDefault();
         this._tetrisGame.move('right', true);
+        break;
+    }
+  }
+
+  _keyupHandler(e) {
+    switch (e.code) {
+      case 'ArrowDown':
+      case 'KeyS':
+        this._tetrisGame.setDefaultSpeed();
         break;
     }
   }
