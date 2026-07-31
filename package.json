@@ -2,6 +2,7 @@
   "name": "maxinflame-games",
   "version": "0.0.1",
   "description": "",
+  "type": "module",
   "main": "script.js",
   "scripts": {
     "dev": "gulp start",
@@ -11,11 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^5.2.1",
     "g": "^2.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@zoxon/emitty": "^1.4.2",
     "browser-sync": "^2.29.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",

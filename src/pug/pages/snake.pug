@@ -14,10 +14,10 @@ block content
         include ./../blocks/game-over-popup
       .game-wrapper__interface
         div
-          span Score: 
+          span Score:
           span(data-score='') 0
         div
-          span High score: 
+          span High score:
           span(data-high-score)
         .controls__buttons
           button.button.button--start(data-play-button='') Play
@@ -28,7 +28,7 @@ block content
           button.mobile-controls__button.mobile-controls__button--down(data-mobile-down='') &darr;
           button.mobile-controls__button.mobile-controls__button--right(data-mobile-right='') &rarr;
         .game-page-table
-          a(href="score-table.html").heading-3.game-page-table__title Best Scores
+          a(href="/score-table").heading-3.game-page-table__title Best Scores
           table.score-table.game-page-table__table
             tbody(data-result-table)
               tr
@@ -40,7 +40,7 @@ block content
               tr
                 td.score-table__cell kopatel2004
                 td.score-table__cell 69
-          a(href="score-table.html").game-page-table__link View all 
+          a(href="/score-table").game-page-table__link View all
 
 block scripts
   script(src='./js/snake.js' type='module')

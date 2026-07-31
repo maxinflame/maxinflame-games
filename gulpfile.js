@@ -1,21 +1,18 @@
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const sync = require("browser-sync").create();
-const pug = require('gulp-pug');
-const emitty = require("@zoxon/emitty");
-const webpackStream = require('webpack-stream');
-const webpackConfig = require('./webpack.config.js');
-const sass = require('gulp-sass')(require('sass'));
-const csso = require('gulp-csso');
-const rename = require('gulp-rename');
+import gulp from 'gulp';
+import browserSync from 'browser-sync';
+import webpackStream from 'webpack-stream';
+import webpackConfig from './webpack.config.js';
+import gulpSass from 'gulp-sass';
+import * as sass from 'sass';
+import gulpCsso from 'gulp-csso';
+import rename from 'gulp-rename';
 
+const sync = browserSync.create();
+const sassCompiler = gulpSass(sass);
 
 const PATHS = {
-  PUG: 'src/pug/',
-  PUG_PAGES: 'src/pug/pages/',
-  HTML_DIST: './docs/',
   JS: 'src/js',
-  JS_DIST: 'docs/js',
+  JS_DIST: 'www/js',
   SCSS_SRC: 'src/scss',
   SCSS: [
     {
@@ -23,8 +20,8 @@ const PATHS = {
       filename: 'style',
     },
   ],
-  CSS_DIST: 'docs/css',
-}
+  CSS_DIST: 'www/css',
+};
 
 // Server initilization
 
@@ -37,108 +34,52 @@ const server = (done) => {
     ui: false,
   });
   done();
-}
+};
 
 const reloadServer = () => {
   sync.reload();
-}
-
-
-// Building pug
-
-const emittyPug = emitty.setup(PATHS.PUG, 'pug', {
-  makeVinylFile: true,
-});
-
-global.watch = false;
-global.emittyChangedFile = {
-  path: '',
-  stats: null,
 };
-
-const buildPug = () => {
-  return gulp.src(`./${PATHS.PUG_PAGES}/*.pug`)
-  .pipe(
-    gulpif(
-      global.watch,
-      emittyPug.stream(
-        global.emittyChangedFile.path,
-        global.emittyChangedFile.stats,
-      ),
-    ),
-  )
-  .pipe(
-    pug({
-      pretty: true
-    })
-  )
-  .pipe(gulp.dest(PATHS.HTML_DIST))
-}
-
-const pugWatcher = () => {
-  global.watch = true;
-  gulp.watch(`src/**/*.pug`, gulp.series(buildPug))
-    .on('all', (event, filepath, stats) => {
-      global.emittyChangedFile = {
-        path: filepath,
-        stats,
-      };
-    });
-}
-
-// end building pug
-
 
 // building scripts
 
 const js = () => {
-  return gulp.src([`${PATHS.JS}/snake.js`])
+  return gulp
+    .src([`${PATHS.JS}/snake.js`])
     .pipe(webpackStream(webpackConfig))
-    .pipe(gulp.dest(`${PATHS.JS_DIST}`))
+    .pipe(gulp.dest(`${PATHS.JS_DIST}`));
 };
 
 const jsWatcher = () => {
   gulp.watch(`${PATHS.JS}/**/*.{js,json}`, gulp.series(js));
-}
-
+};
 
 // styles
 
 const buildCSS = (file) => {
-  return gulp.src(`${file.path}/${file.filename}.scss`)
-  .pipe(sass())
-  .pipe(csso())
-  .pipe(rename(`${file.filename}.min.css`))
-  .pipe(gulp.dest(`${PATHS.CSS_DIST}`))
-}
+  return gulp
+    .src(`${file.path}/${file.filename}.scss`)
+    .pipe(sassCompiler())
+    .pipe(gulpCsso())
+    .pipe(rename(`${file.filename}.min.css`))
+    .pipe(gulp.dest(`${PATHS.CSS_DIST}`));
+};
 
 const styles = (done) => {
-  PATHS.SCSS.forEach(file => buildCSS(file));
+  PATHS.SCSS.forEach((file) => buildCSS(file));
   reloadServer();
   done();
-}
+};
 
 const stylesWatcher = () => {
   gulp.watch(`${PATHS.SCSS_SRC}/**/*.scss`, gulp.series(styles));
-}
-
+};
 
 const start = (done) => {
-  gulp.series(
-    server,
-    gulp.parallel(
-      pugWatcher,
-      jsWatcher,
-      stylesWatcher,
-    )
-  )(done)
-}
+  gulp.series(server, gulp.parallel(jsWatcher, stylesWatcher))(done);
+};
 
-exports.start = start; 
+export { start };
 
-exports.build = (done) => {
-  gulp.series(
-    styles,
-    js,
-  )(done)
+export function build(done) {
+  gulp.series(styles, js)(done);
 }

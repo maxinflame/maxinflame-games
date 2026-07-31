@@ -1,8 +1,8 @@
-import { Canvas } from '../Canvas';
-import { PURPLE } from '../variables';
-import { GameOverPopup } from '../GameOverPopup';
-import { TetrisGame } from './TetrisGame';
-import { FIELD_SIZE } from './tetrisVariables';
+import { Canvas } from '../Canvas.js';
+import { PURPLE } from '../variables.js';
+import { GameOverPopup } from '../GameOverPopup.js';
+import { TetrisGame } from './TetrisGame.js';
+import { FIELD_SIZE } from './tetrisVariables.js';
 
 class TetrisUI {
   constructor(canvas) {

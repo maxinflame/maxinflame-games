@@ -1,4 +1,4 @@
-import { CELLS_NUMBER, HEAD_COORD, HEAD_SPEED } from './snake-variables';
+import { CELLS_NUMBER, HEAD_COORD, HEAD_SPEED } from './snake-variables.js';
 
 class TailPart {
   constructor(x, y) {

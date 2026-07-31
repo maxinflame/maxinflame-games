@@ -1,5 +1,5 @@
-import { TetraminoFactory } from './TetraminoFactory';
-import { FIELD_SIZE } from './tetrisVariables';
+import { TetraminoFactory } from './TetraminoFactory.js';
+import { FIELD_SIZE } from './tetrisVariables.js';
 
 const DEFAULT_DROP_DELAY = 300;
 const SPEED_UP_DROP_DELAY = 50;
