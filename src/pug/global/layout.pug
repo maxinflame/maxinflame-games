@@ -1,4 +1,4 @@
-- 
+-
   var pageTitle = 'MAXINFLAME Games'
 
 
@@ -9,9 +9,9 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title #{pageTitle}
-  link(href='./img/favicon/site.webmanifest' rel='manifest')
-  link(rel='icon' href='./favicon.ico')
-  link(rel='stylesheet' href='./css/style.min.css')
+  link(href='/img/favicon/site.webmanifest' rel='manifest')
+  link(rel='icon' href='/favicon.ico')
+  link(rel='stylesheet' href='/css/style.css')
 
 include header
 
@@ -29,10 +29,10 @@ main
           button.button(data-retry='') Retry
       .game-wrapper__interface
         div
-          span Score: 
+          span Score:
           span(data-score='') 0
         div
-          span High score: 
+          span High score:
           span(data-high-score='')
         .controls__buttons
           button.button.button--start(data-play-button='') Play
